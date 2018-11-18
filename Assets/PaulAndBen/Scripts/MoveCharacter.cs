@@ -20,6 +20,12 @@ public class MoveCharacter : MonoBehaviour
     [SerializeField]
     private GameObject dialogueBox;
 
+    [SerializeField]
+    private AudioClip turkeysComing;
+
+    [SerializeField]
+    private AudioSource myAudioSource;
+
     private SpriteRenderer mySpriteRenderer;
 
     private Transform myTransform;
@@ -84,6 +90,7 @@ public class MoveCharacter : MonoBehaviour
         canWarn = false;
         mySpriteRenderer.sprite = wheelieHorse;
         dialogueBox.SetActive(true);
+        myAudioSource.PlayOneShot(turkeysComing);
         yield return new WaitForSeconds(1f);
         mySpriteRenderer.sprite = normalHorse;
         dialogueBox.SetActive(false);

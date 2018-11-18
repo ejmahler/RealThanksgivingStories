@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PaulAndBen/Scenes/PaulScene.unity
     guid: 5f613f76435c24c48a95908cbfab89a7
+  - enabled: 1
+    path: Assets/PaulAndBen/Scenes/BenScene.unity
+    guid: 45d7238450b468d4787031c5df4153a0
+  - enabled: 1
+    path: Assets/PaulAndBen/Scenes/FinalCard.unity
+    guid: 98e13ed876907ca45820fb74192f88cd
   m_configObjects: {}
