@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/_Scenes/WitchTrial/WitchTrial.unity
+    guid: 09cf3ab8ee5af9a4093593114c13c258
+  - enabled: 1
+    path: Assets/_Scenes/WitchTrial/WitchTrial2.unity
+    guid: 4b47740fdadde1d4589f279edea7d243
   m_configObjects: {}
