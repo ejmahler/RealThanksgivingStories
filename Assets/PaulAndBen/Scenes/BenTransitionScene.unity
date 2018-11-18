@@ -224,7 +224,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &410490789
 MonoBehaviour:
@@ -289,6 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: {fileID: 1276458428}
   textPause: 0.005
+  myAudioSource: {fileID: 0}
 --- !u!4 &441425155
 Transform:
   m_ObjectHideFlags: 0
@@ -628,6 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: {fileID: 669441751}
   textPause: 0.005
+  myAudioSource: {fileID: 0}
 --- !u!4 &783980553
 Transform:
   m_ObjectHideFlags: 0
@@ -1164,6 +1166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: {fileID: 1547913461}
   textPause: 0.005
+  myAudioSource: {fileID: 0}
 --- !u!4 &1742068508
 Transform:
   m_ObjectHideFlags: 0

@@ -20,6 +20,27 @@ public class PaulManager : MonoBehaviour {
     [SerializeField]
     private string storyText4;
 
+    [SerializeField]
+    private AudioClip narr1;
+
+    [SerializeField]
+    private AudioClip narr2;
+
+    [SerializeField]
+    private AudioClip narr3;
+
+    [SerializeField]
+    private AudioClip narr4;
+
+    [SerializeField]
+    private MoveCharacter paul;
+
+    [SerializeField]
+    private GameObject instructionText;
+
+    [SerializeField]
+    private GameObject storyTimeText;
+
     private int numHousesWarned;
 
     [SerializeField]
@@ -27,7 +48,7 @@ public class PaulManager : MonoBehaviour {
 
     void Start () {
 
-        CheckText();
+        StartCoroutine(CheckText());
 
         for (int i = 0; i < houses.Count; i++)
         {
@@ -40,32 +61,69 @@ public class PaulManager : MonoBehaviour {
     private void HouseWarned()
     {
         numHousesWarned++;
-        CheckText();
+        StartCoroutine(CheckText());
     }
 
-    private void CheckText()
+    private IEnumerator CheckText()
     {
         switch (numHousesWarned)
         {
             case 0:
-                storyText.WriteText(storyText1);
+                instructionText.SetActive(false);
+                storyTimeText.SetActive(true);
+                paul.MovementStatus(false);
+                storyText.WriteText(storyText1, narr1);
+                StartCoroutine(PauseMovement(narr1.length));
                 break;
 
-            case 3:
-                storyText.WriteText(storyText2);
+            case 2:
+                instructionText.SetActive(false);
+                storyTimeText.SetActive(true);
+                paul.MovementStatus(false);
+                yield return new WaitForSeconds(2f);
+                storyText.WriteText(storyText2, narr2);
+                StartCoroutine(PauseMovement(narr2.length));
+                break;
+
+            case 4:
+                instructionText.SetActive(false);
+                storyTimeText.SetActive(true);
+                paul.MovementStatus(false);
+                yield return new WaitForSeconds(2f);
+                storyText.WriteText(storyText3, narr3);
+                StartCoroutine(PauseMovement(narr3.length));
                 break;
 
             case 6:
-                storyText.WriteText(storyText3);
+                instructionText.SetActive(false);
+                storyTimeText.SetActive(true);
+                paul.MovementStatus(false);
+                yield return new WaitForSeconds(2f);
+                storyText.WriteText(storyText4, narr4);
+                StartCoroutine(PauseMovement(narr4.length));
                 break;
 
             case 9:
-                storyText.WriteText(storyText4);
-                break;
-
-            case 13:
-                SceneManager.LoadScene("BenTransitionScene");
+                instructionText.SetActive(false);
+                storyTimeText.SetActive(true);
+                paul.MovementStatus(false);
+                StartCoroutine(DelaySceneChange());
                 break;
         }
+    }
+
+    private IEnumerator PauseMovement(float _pauseTime)
+    {
+
+        yield return new WaitForSeconds(_pauseTime);
+        paul.MovementStatus(true);
+        instructionText.SetActive(true);
+        storyTimeText.SetActive(false);
+    }
+
+    private IEnumerator DelaySceneChange()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene("BenTransitionScene");
     }
 }

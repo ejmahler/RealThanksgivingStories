@@ -11,13 +11,29 @@ public class TypeText : MonoBehaviour {
     [SerializeField]
     private float textPause;
 
+    [SerializeField]
+    private AudioSource myAudioSource;
+
     private string newText;
 
-    public void WriteText(string _text)
+    public void WriteText(string _text, AudioClip _textClip = null)
     {
         newText = _text;
         storyText.text = "";
+
+        if (myAudioSource != null && _textClip != null)
+        {
+            PlayClipAudio(_textClip);
+        }
+
         StartCoroutine(TextRoutine(newText));
+    }
+
+    private void PlayClipAudio(AudioClip _clip)
+    {
+        myAudioSource.Stop();
+        myAudioSource.clip = _clip;
+        myAudioSource.Play();
     }
 
     private IEnumerator TextRoutine (string _text)

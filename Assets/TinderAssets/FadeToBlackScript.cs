@@ -20,9 +20,17 @@ public class FadeToBlackScript : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        currentStatus = FadeStatus.FadingToBlack;
+
         canvasGroup = GetComponent<CanvasGroup>();
-	}
+        if (currentStatus == FadeStatus.FadingToBlack)
+        {
+            canvasGroup.alpha = 0f;
+        }
+        else
+        {
+            canvasGroup.alpha = 1f;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
