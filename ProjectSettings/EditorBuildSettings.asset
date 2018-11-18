@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/WitchTrial/WitchTrial2.unity
     guid: 4b47740fdadde1d4589f279edea7d243
+  - enabled: 1
+    path: Assets/_Scenes/WitchTrial/WitchTrial3.unity
+    guid: fddb2e4f5aa1f424d915d35aadd2b50e
   m_configObjects: {}

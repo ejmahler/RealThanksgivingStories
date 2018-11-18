@@ -84,7 +84,10 @@ public class GameplayNavigation : MonoBehaviour {
     {
         if (iterator != 0)
         {
-            _storyPoints[iterator - 1].speaker.GetComponent<Animator>().Play("Idle");
+            if (_storyPoints[iterator - 1].speaker.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Talking"))
+            {
+                _storyPoints[iterator - 1].speaker.GetComponent<Animator>().Play("Idle");
+            }
         }
 
         if (iterator >= _storyPoints.Length)
