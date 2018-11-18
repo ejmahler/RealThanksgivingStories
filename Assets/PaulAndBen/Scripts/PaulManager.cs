@@ -41,6 +41,9 @@ public class PaulManager : MonoBehaviour {
     [SerializeField]
     private GameObject storyTimeText;
 
+    [SerializeField]
+    private GameObject fadeToBlack;
+
     private int numHousesWarned;
 
     [SerializeField]
@@ -123,6 +126,7 @@ public class PaulManager : MonoBehaviour {
 
     private IEnumerator DelaySceneChange()
     {
+        fadeToBlack.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("BenTransitionScene");
     }

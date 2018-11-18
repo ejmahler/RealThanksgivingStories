@@ -55,6 +55,30 @@ public class TransitionManager : MonoBehaviour {
     [SerializeField]
     private string storyText5;
 
+    [SerializeField]
+    private AudioClip titleClip;
+
+    [SerializeField]
+    private AudioClip nameClip;
+
+    [SerializeField]
+    private AudioClip storyClip1;
+
+    [SerializeField]
+    private AudioClip storyClip2;
+
+    [SerializeField]
+    private AudioClip storyClip3;
+
+    [SerializeField]
+    private AudioClip storyClip4;
+
+    [SerializeField]
+    private AudioClip storyClip5;
+
+    [SerializeField]
+    private GameObject titleCardFade;
+
     private int sceneNum;
 
     private bool canChangeScene;
@@ -79,29 +103,30 @@ public class TransitionManager : MonoBehaviour {
         switch (sceneNum)
         {
             case 0:
+                titleCardFade.SetActive(true);
                 titleCard.SetActive(false);
                 BenTalk();
-                storyText.WriteText(storyText1);
+                storyText.WriteText(storyText1,storyClip1);
                 break;
 
             case 1:
                 PaulTalk();
-                storyText.WriteText(storyText2);
+                storyText.WriteText(storyText2, storyClip2);
                 break;
 
             case 2:
                 BenTalk();
-                storyText.WriteText(storyText3);
+                storyText.WriteText(storyText3, storyClip3);
                 break;
 
             case 3:
                 PaulTalk();
-                storyText.WriteText(storyText4);
+                storyText.WriteText(storyText4, storyClip4);
                 break;
 
             case 4:
                 BenTalk();
-                storyText.WriteText(storyText5);
+                storyText.WriteText(storyText5, storyClip5);
                 break;
 
             case 5:
@@ -112,9 +137,9 @@ public class TransitionManager : MonoBehaviour {
 
     private IEnumerator IntroCard()
     {
-        titleCardText.WriteText(titleString);
+        titleCardText.WriteText(titleString, titleClip);
         yield return new WaitForSeconds(2f);
-        nameText.WriteText(nameString);
+        nameText.WriteText(nameString, nameClip);
         yield return new WaitForSeconds(2f);
         instructionText.SetActive(true);
         canChangeScene = true;

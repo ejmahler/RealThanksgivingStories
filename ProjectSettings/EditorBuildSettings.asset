@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/MainMenu.unity
+    guid: 10ea249fc10f26b4ab89e1b5f29d1e9f
+  - enabled: 1
     path: Assets/_Scenes/TinderScreen1.unity
     guid: 73f664d2b919945d89f7f00dd8202344
   - enabled: 1
