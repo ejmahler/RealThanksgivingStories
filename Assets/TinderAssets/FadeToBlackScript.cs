@@ -31,7 +31,7 @@ public class FadeToBlackScript : MonoBehaviour {
         }
         else if (currentStatus == FadeStatus.FadingToTransparent)
         {
-            canvasGroup.alpha = Mathf.Clamp01(canvasGroup.alpha - Time.deltaTime / _FadeToBlackTime);
+            canvasGroup.alpha = Mathf.Clamp01(canvasGroup.alpha - Time.deltaTime / _FadeToTransparentTime);
 
             if(canvasGroup.alpha <= 0.0f) {
                 Destroy(gameObject);
