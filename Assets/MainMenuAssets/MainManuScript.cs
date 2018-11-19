@@ -21,7 +21,7 @@ public class MainManuScript : MonoBehaviour {
         StartCoroutine(LoadLevel("TinderScreen1"));
     }
     public void OnTrialClicked() {
-        StartCoroutine(LoadLevel("WitchTrial"));
+        StartCoroutine(LoadLevel("WitchTrial_IntroSong"));
     }
     public void OnBennyFranksClicked() {
         StartCoroutine(LoadLevel("PaulScene"));
