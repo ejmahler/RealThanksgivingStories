@@ -22,7 +22,7 @@ public class PhoneSwipe : MonoBehaviour {
     private Object _NextScene;
 
     [SerializeField]
-    private AudioClip _SwipeSound;
+    private AudioClip[] _SwipeSounds;
 
     Queue<Image> QueuedSwipes = new Queue<Image>();
 
@@ -68,7 +68,8 @@ public class PhoneSwipe : MonoBehaviour {
 
             yield return HandleSwipe(NextSwipe);
 
-            SwipeSource.clip = _SwipeSound;
+            SwipeSource.clip = Utils.ChooseRandom(_SwipeSounds);
+            SwipeSource.pitch = Random.Range(0.9f, 1.1f);
             SwipeSource.Play();
 
             if (CurrentSprite == _PocaHottieSprite && LastSwipeResult == SwipeResult.Right) {
@@ -91,12 +92,12 @@ public class PhoneSwipe : MonoBehaviour {
             photoComponent.ResetSwipe();
             yield return new WaitUntil(() => photoComponent.CurrentState == SwipeablePhoto.SwipeState.Dropped);
 
-            if (photoComponent.rectTransform.anchoredPosition.x < -MaskObject.rectTransform.rect.width * 0.75f) {
+            if (photoComponent.rectTransform.anchoredPosition.x < -MaskObject.rectTransform.rect.width * 0.4f) {
                 LastSwipeResult = SwipeResult.Left;
                 Destroy(imageWidget.gameObject);
                 yield break;
             }
-            else if (photoComponent.rectTransform.anchoredPosition.x > MaskObject.rectTransform.rect.width * 0.75f)
+            else if (photoComponent.rectTransform.anchoredPosition.x > MaskObject.rectTransform.rect.width * 0.4f)
             {
                 LastSwipeResult = SwipeResult.Right;
                 Destroy(imageWidget.gameObject);

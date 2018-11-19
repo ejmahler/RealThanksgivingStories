@@ -734,8 +734,8 @@ MonoBehaviour:
 
     the Pilgrims realize they have brought no women with them...'
   _SecondHalfText: The enterprising John Smith has the perfect idea...
-  _FirstHalfAudio: {fileID: 8300000, guid: 6f45b15a240c7451997c23717fd98edd, type: 3}
-  _SecondHalfAudio: {fileID: 8300000, guid: cb73bc6f401954fbbb3a86b21d0437e3, type: 3}
+  _FirstHalfAudio: {fileID: 8300000, guid: 7bb0cc825592441498d8fe7b3917ca73, type: 3}
+  _SecondHalfAudio: {fileID: 8300000, guid: 16e4516c2ada4499db5d48b3442057aa, type: 3}
 --- !u!114 &1553723662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,7 +936,12 @@ MonoBehaviour:
   _ScreenFadePrefab: {fileID: 114521680166468294, guid: eae48829ce9a34c30a74db70c4496102,
     type: 2}
   _NextScene: {fileID: 102900000, guid: d48db954b600d496ca2dc5e0111bf693, type: 3}
-  _SwipeSound: {fileID: 8300000, guid: 4f425f15a12da492ba16814045ad7c47, type: 3}
+  _SwipeSounds:
+  - {fileID: 8300000, guid: f7b8b3df91ffe412b99fc8ce72757c89, type: 3}
+  - {fileID: 8300000, guid: aa3760354b9644ab886617fb4d650496, type: 3}
+  - {fileID: 8300000, guid: 51f644fe00c1a43fbbcc2ff079bacca3, type: 3}
+  - {fileID: 8300000, guid: b4d9b0fa114da44e3a6f6069a00c9ada, type: 3}
+  - {fileID: 8300000, guid: 373cd52c0b01b4d2ea9a826d61b16194, type: 3}
 --- !u!222 &1602604337
 CanvasRenderer:
   m_ObjectHideFlags: 0

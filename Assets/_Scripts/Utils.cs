@@ -15,4 +15,9 @@ public class Utils {
         }
         TweenFn(1);
     }
+
+    public static T ChooseRandom<T>(T[] Options) {
+        int index = Random.Range(0, Options.Length);
+        return Options[index];
+    }
 }
