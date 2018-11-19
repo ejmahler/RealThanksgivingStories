@@ -14,10 +14,13 @@ public class BenMover : MonoBehaviour {
 
     private int numTurkeysStuffed;
 
+    private bool isFacingRight;
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
+        isFacingRight = true;
     }
 
     private void FixedUpdate()
@@ -30,6 +33,17 @@ public class BenMover : MonoBehaviour {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
+
+        if (horizontal < 0 && isFacingRight)
+        {
+            isFacingRight = false;
+            Flip();
+        }
+        else if (horizontal > 0 && !isFacingRight)
+        {
+            isFacingRight = true;
+            Flip();
+        }
 
         Vector2 moveVector = new Vector2(horizontal, vertical);
         moveVector = moveVector.normalized;
@@ -44,6 +58,13 @@ public class BenMover : MonoBehaviour {
             numTurkeysStuffed++;
             CheckEnding();
         }
+    }
+
+    private void Flip()
+    {
+        Vector3 scale = myTransform.localScale;
+        scale.x *= -1;
+        myTransform.localScale = scale;
     }
 
     private void CheckEnding()

@@ -79,6 +79,15 @@ public class TransitionManager : MonoBehaviour {
     [SerializeField]
     private GameObject titleCardFade;
 
+    [SerializeField]
+    private GameObject fadeToNew;
+
+    [SerializeField]
+    private Animator benAnimator;
+
+    [SerializeField]
+    private Animator paulAnimator;
+
     private int sceneNum;
 
     private bool canChangeScene;
@@ -107,30 +116,41 @@ public class TransitionManager : MonoBehaviour {
                 titleCard.SetActive(false);
                 BenTalk();
                 storyText.WriteText(storyText1,storyClip1);
+                benAnimator.SetBool("Talk", true);
+                //paulAnimator.SetBool("Talk", false);
                 break;
 
             case 1:
                 PaulTalk();
                 storyText.WriteText(storyText2, storyClip2);
+               // benAnimator.SetBool("Talk", false);
+                paulAnimator.SetBool("Talk", true);
                 break;
 
             case 2:
                 BenTalk();
                 storyText.WriteText(storyText3, storyClip3);
+                benAnimator.SetBool("Talk", true);
+                //paulAnimator.SetBool("Talk", false);
                 break;
 
             case 3:
                 PaulTalk();
                 storyText.WriteText(storyText4, storyClip4);
+               // benAnimator.SetBool("Talk", false);
+                paulAnimator.SetBool("Talk", true);
                 break;
 
             case 4:
                 BenTalk();
                 storyText.WriteText(storyText5, storyClip5);
+                benAnimator.SetBool("Talk", true);
+               // paulAnimator.SetBool("Talk", false);
                 break;
 
             case 5:
-                SceneManager.LoadScene("BenScene");
+                fadeToNew.SetActive(true);
+                StartCoroutine(DelayNewScene());
                 break;
         } 
     }
@@ -144,6 +164,12 @@ public class TransitionManager : MonoBehaviour {
         instructionText.SetActive(true);
         canChangeScene = true;
         
+    }
+
+    private IEnumerator DelayNewScene()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("BenScene");
     }
 
     private void BenTalk()
