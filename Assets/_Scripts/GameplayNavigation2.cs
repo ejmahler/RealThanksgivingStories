@@ -108,7 +108,7 @@ public class GameplayNavigation2 : MonoBehaviour {
 
         if (iterator >= _storyPoints.Length)
         {
-            SceneManager.LoadScene("WitchTrial4");
+            SceneManager.LoadScene("WitchTrial_PreBurningCard");
             return;
         }
 

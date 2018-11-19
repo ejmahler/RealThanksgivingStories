@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameplayNavigation1 : MonoBehaviour {
+public class GameplayNavigation3 : MonoBehaviour {
     
     [SerializeField]
     private Text _textCrawler;
@@ -108,7 +108,7 @@ public class GameplayNavigation1 : MonoBehaviour {
 
         if (iterator >= _storyPoints.Length)
         {
-            SceneManager.LoadScene("WitchTrial_PreBurningCard");
+            SceneManager.LoadScene("FinalCard");
             return;
         }
 

@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b8d0e367d2a4bcea350d6dc1d39c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NextScene: WitchTrial
+  _NextScene: WitchTrial4
 --- !u!114 &911897836
 MonoBehaviour:
   m_ObjectHideFlags: 0
