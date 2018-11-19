@@ -16,6 +16,36 @@ public class BenMover : MonoBehaviour {
 
     private bool isFacingRight;
 
+
+    private bool isClopping;
+
+    [SerializeField]
+    private GameObject stuffedCanvas;
+
+    [SerializeField]
+    private CanvasGroup stuffedGroup;
+
+    [SerializeField]
+    private AudioSource stuffedSource;
+
+    [SerializeField]
+    private AudioSource gruntsSource;
+
+    [SerializeField]
+    private AudioClip stuffedClip;
+
+    [SerializeField]
+    private AudioClip gruntsLoopClip;
+
+    [SerializeField]
+    private Animator myAnimator;
+
+    [SerializeField]
+    private float stuffedTime;
+
+
+    private bool fadeInStuffed;
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -25,7 +55,7 @@ public class BenMover : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        Move();
+            Move();
     }
 
     private void Move()
@@ -46,6 +76,20 @@ public class BenMover : MonoBehaviour {
         }
 
         Vector2 moveVector = new Vector2(horizontal, vertical);
+
+        if (moveVector != Vector2.zero && !isClopping)
+        {
+            myAnimator.SetBool("Run", true);
+            gruntsSource.Play();
+            isClopping = true;
+        }
+        else if (moveVector == Vector2.zero && isClopping)
+        {
+            myAnimator.SetBool("Run", false);
+            gruntsSource.Stop();
+            isClopping = false;
+        }
+
         moveVector = moveVector.normalized;
         myRigidbody.MovePosition(myTransform.position + (Vector3)moveVector * Time.deltaTime * speed);
     }
@@ -56,7 +100,8 @@ public class BenMover : MonoBehaviour {
         {
             _collision.GetComponent<TurkeyMovement>().DestroyTurkey();
             numTurkeysStuffed++;
-            CheckEnding();
+            StartCoroutine(TurkeyCaught());
+            
         }
     }
 
@@ -67,11 +112,35 @@ public class BenMover : MonoBehaviour {
         myTransform.localScale = scale;
     }
 
-    private void CheckEnding()
+    private IEnumerator TurkeyCaught()
     {
+        speed = 0.2f;
+        stuffedSource.pitch = Random.Range(0.95f, 1.05f);
+        stuffedSource.Stop();
+        stuffedSource.clip = stuffedClip;
+        stuffedSource.Play();
+        stuffedGroup.alpha = 0;
+        fadeInStuffed = true;
+        yield return new WaitForSeconds(2f);
+        fadeInStuffed = false;
         if (numTurkeysStuffed == 6)
         {
             SceneManager.LoadScene("FinalCard");
+        }
+        yield return new WaitForSeconds(1f);
+        stuffedGroup.alpha = 0;
+        speed = 5f;
+    }
+
+    private void Update()
+    {
+        if (fadeInStuffed)
+        {
+            stuffedGroup.alpha = Mathf.Clamp01(stuffedGroup.alpha + Time.deltaTime / stuffedTime);
+        }
+        else
+        {
+            stuffedGroup.alpha = Mathf.Clamp01(stuffedGroup.alpha - Time.deltaTime / stuffedTime);
         }
     }
 

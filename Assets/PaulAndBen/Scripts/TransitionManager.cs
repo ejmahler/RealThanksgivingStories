@@ -99,7 +99,7 @@ public class TransitionManager : MonoBehaviour {
 
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canChangeScene)
         {
             ChangeScene();
             sceneNum++;
@@ -117,13 +117,11 @@ public class TransitionManager : MonoBehaviour {
                 BenTalk();
                 storyText.WriteText(storyText1,storyClip1);
                 benAnimator.SetBool("Talk", true);
-                //paulAnimator.SetBool("Talk", false);
                 break;
 
             case 1:
                 PaulTalk();
                 storyText.WriteText(storyText2, storyClip2);
-               // benAnimator.SetBool("Talk", false);
                 paulAnimator.SetBool("Talk", true);
                 break;
 
@@ -131,13 +129,11 @@ public class TransitionManager : MonoBehaviour {
                 BenTalk();
                 storyText.WriteText(storyText3, storyClip3);
                 benAnimator.SetBool("Talk", true);
-                //paulAnimator.SetBool("Talk", false);
                 break;
 
             case 3:
                 PaulTalk();
                 storyText.WriteText(storyText4, storyClip4);
-               // benAnimator.SetBool("Talk", false);
                 paulAnimator.SetBool("Talk", true);
                 break;
 
@@ -145,7 +141,6 @@ public class TransitionManager : MonoBehaviour {
                 BenTalk();
                 storyText.WriteText(storyText5, storyClip5);
                 benAnimator.SetBool("Talk", true);
-               // paulAnimator.SetBool("Talk", false);
                 break;
 
             case 5:
