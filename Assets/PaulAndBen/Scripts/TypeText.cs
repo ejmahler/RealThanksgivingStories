@@ -14,6 +14,8 @@ public class TypeText : MonoBehaviour {
     [SerializeField]
     private AudioSource myAudioSource;
 
+    private IEnumerator typeRoutine;
+
     private string newText;
 
     public void WriteText(string _text, AudioClip _textClip = null)
@@ -26,7 +28,14 @@ public class TypeText : MonoBehaviour {
             PlayClipAudio(_textClip);
         }
 
-        StartCoroutine(TextRoutine(newText));
+        if (typeRoutine != null)
+        {
+            StopCoroutine(typeRoutine);
+        }
+
+        typeRoutine = TextRoutine(newText);
+
+        StartCoroutine(typeRoutine);
     }
 
     private void PlayClipAudio(AudioClip _clip)
