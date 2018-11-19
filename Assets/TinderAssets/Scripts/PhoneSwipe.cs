@@ -24,6 +24,18 @@ public class PhoneSwipe : MonoBehaviour {
     [SerializeField]
     private AudioClip[] _SwipeSounds;
 
+    [SerializeField]
+    private AudioClip[] _DisapprovalSounds;
+
+    [SerializeField]
+    private AudioClip[] _ApprovalSounds;
+
+    [SerializeField]
+    private AudioSource _SwipeSource;
+
+    [SerializeField]
+    private AudioSource _ApprovalSource;
+
     Queue<Image> QueuedSwipes = new Queue<Image>();
 
     enum SwipeResult { Left, Right };
@@ -55,9 +67,8 @@ public class PhoneSwipe : MonoBehaviour {
 	}
 
     IEnumerator ManageSwipes() {
-        AudioSource SwipeSource = GetComponent<AudioSource>();
-
-        while(true) {
+        bool FirstThing = true;
+        while (true) {
             Image NextSwipe = QueuedSwipes.Dequeue();
             Sprite CurrentSprite = NextSwipe.sprite;
 
@@ -66,11 +77,21 @@ public class PhoneSwipe : MonoBehaviour {
                 QueuedSwipes.Enqueue(SetupSwipePhoto(_PocaHottieSprite));
             }
 
+            if (!FirstThing)
+            {
+                if (NextSwipe.sprite == _PocaHottieSprite && !_ApprovalSource.isPlaying)
+                {
+                    _ApprovalSource.PlayRandomizedDelayed(0.75f, _ApprovalSounds);
+                }
+                else
+                {
+                    _ApprovalSource.PlayRandomizedDelayed(0.75f, _DisapprovalSounds);
+                }
+            }
+
             yield return HandleSwipe(NextSwipe);
 
-            SwipeSource.clip = Utils.ChooseRandom(_SwipeSounds);
-            SwipeSource.pitch = Random.Range(0.9f, 1.1f);
-            SwipeSource.Play();
+            _SwipeSource.PlayRandomized(_SwipeSounds);
 
             if (CurrentSprite == _PocaHottieSprite && LastSwipeResult == SwipeResult.Right) {
                 FadeToBlackScript FadeInstance = Instantiate<FadeToBlackScript>(_ScreenFadePrefab);
@@ -83,6 +104,7 @@ public class PhoneSwipe : MonoBehaviour {
                 FadeInstance.currentStatus = FadeToBlackScript.FadeStatus.FadingToTransparent;
                 SceneManager.LoadScene(_NextScene.name);
             }
+            FirstThing = false;
         }
     }
 

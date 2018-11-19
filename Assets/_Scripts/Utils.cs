@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Utils {
+public static class Utils {
 
     public static IEnumerator Tween(float duration, System.Action<float> TweenFn)
     {
@@ -19,5 +19,18 @@ public class Utils {
     public static T ChooseRandom<T>(T[] Options) {
         int index = Random.Range(0, Options.Length);
         return Options[index];
+    }
+
+    public static void PlayRandomized(this AudioSource Source, params AudioClip[] Clips) {
+        Source.clip = Utils.ChooseRandom(Clips);
+        Source.pitch = Random.Range(0.9f, 1.1f);
+        Source.Play();
+    }
+
+    public static void PlayRandomizedDelayed(this AudioSource Source, float Delay, params AudioClip[] Clips)
+    {
+        Source.clip = Utils.ChooseRandom(Clips);
+        Source.pitch = Random.Range(0.9f, 1.1f);
+        Source.PlayDelayed(Delay);
     }
 }

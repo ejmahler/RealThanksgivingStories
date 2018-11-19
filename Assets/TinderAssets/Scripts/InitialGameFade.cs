@@ -72,7 +72,7 @@ public class InitialGameFade : MonoBehaviour {
         }
 
         if(Fade.currentStatus == FadeToBlackScript.FadeStatus.FadingToTransparent) {
-            if (_LevelToLoad != null)
+            if (_LevelToLoad != null && _LevelToLoad.Length > 0)
             {
                 DontDestroyOnLoad(gameObject);
                 SceneManager.LoadScene(_LevelToLoad);
