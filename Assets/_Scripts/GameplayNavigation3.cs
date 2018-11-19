@@ -23,6 +23,12 @@ public class GameplayNavigation3 : MonoBehaviour {
     [SerializeField]
     private AudioSource myAudioSource;
 
+    [SerializeField]
+    private AudioSource fireSource;
+
+    [SerializeField]
+    private AudioClip fireClip;
+
     [System.Serializable]
     struct StoryPoints
     {
@@ -36,41 +42,30 @@ public class GameplayNavigation3 : MonoBehaviour {
     [SerializeField]
     private StoryPoints[] _storyPoints;
     private int _currentStoryPointIterator = 0;
-    private float _mouseClickBuffer = 0.2f;
 
-    private bool waitForButton;
+    private int numtransitions;
+
 
     // Use this for initialization
 	void Start () {
         LoadInitialStoryText(0);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        MouseClickListener();
-	}
-
-    void MouseClickListener()
-    {
-        if (!waitForButton)
-        {
-            if (_mouseClickBuffer > 0)
-            {
-                _mouseClickBuffer -= Time.deltaTime;
-                return;
-            }
-
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                AdvanceStory();
-                _mouseClickBuffer = 0.2f;
-            }
-        }
-    }
 
     public void ButtonAdvance()
     {
+        numtransitions++;
         AdvanceStory();
+        fireSource.PlayOneShot(fireClip);
+        if (numtransitions >= 4)
+        {
+            StartCoroutine(DelayEndRoutine());
+        }
+    }
+
+    private IEnumerator DelayEndRoutine()
+    {
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene("FinalCard");
     }
 
     void AdvanceStory()
@@ -79,14 +74,12 @@ public class GameplayNavigation3 : MonoBehaviour {
         if( _currentStoryPointIterator < _storyPoints.Length
             && (_choiceBox.activeInHierarchy || _storyPoints[_currentStoryPointIterator].choices.Length == 0))
         {
-            waitForButton = false;
             _currentStoryPointIterator++;
             ClearChoices();
             LoadInitialStoryText(_currentStoryPointIterator);
         }
         else if (_currentStoryPointIterator < _storyPoints.Length)
         {
-            waitForButton = true;
             _choiceBox.SetActive(true);
             LoadChoicesInStory(_currentStoryPointIterator);
         }
