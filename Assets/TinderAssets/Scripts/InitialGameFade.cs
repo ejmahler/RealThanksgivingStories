@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InitialGameFade : MonoBehaviour {
 
@@ -19,17 +20,34 @@ public class InitialGameFade : MonoBehaviour {
     [SerializeField]
     private AudioClip _SecondHalfAudio;
 
+    [SerializeField]
+    private float _FirstHalfDelay;
+
+    [SerializeField]
+    private float _SecondHalfDelay;
+
+    [SerializeField]
+    private bool _AllowSpaceToSkip = false;
+
+    [SerializeField]
+    private string _LevelToLoad;
+
+    private FadeToBlackScript Fade;
+    private TypeText Typer;
+    void Awake()
+    {
+        Fade = GetComponent<FadeToBlackScript>();
+        Typer = GetComponent<TypeText>();
+    }
+
     // Use this for initialization
     IEnumerator Start () {
-        FadeToBlackScript Fade = GetComponent<FadeToBlackScript>();
         Text TextBox = GetComponentInChildren<Text>();
         CanvasGroup TextBoxCanvasGroup = TextBox.GetComponent<CanvasGroup>();
-        AudioSource DialogueSource = GetComponent<AudioSource>();
-        TypeText TextType = GetComponent<TypeText>();
 
-        TextType.WriteText(_FirstHalfText, _FirstHalfAudio);
+        Typer.WriteText(_FirstHalfText, _FirstHalfAudio);
 
-        yield return new WaitForSeconds(_FirstHalfAudio.length + 1.0f);
+        yield return new WaitForSeconds(_FirstHalfAudio == null ? _FirstHalfDelay : _FirstHalfAudio.length + 1.0f);
 
         yield return Utils.Tween(0.5f, (float Percent) =>
         {
@@ -38,13 +56,27 @@ public class InitialGameFade : MonoBehaviour {
         TextBox.text = "";
         TextBoxCanvasGroup.alpha = 1.0f;
 
-        TextType.WriteText(_SecondHalfText, _SecondHalfAudio);
+        Typer.WriteText(_SecondHalfText, _SecondHalfAudio);
 
-        yield return new WaitForSeconds(_SecondHalfAudio.length + 1.0f);
+        yield return new WaitForSeconds(_SecondHalfAudio == null ? _SecondHalfDelay : _SecondHalfAudio.length + 1.0f);
         Fade.currentStatus = FadeToBlackScript.FadeStatus.FadingToTransparent;
     }
 
+    void Update()
+    {
+        if(_AllowSpaceToSkip && Input.GetKeyDown(KeyCode.Space)) {
+            StopAllCoroutines();
+            Fade.currentStatus = FadeToBlackScript.FadeStatus.FadingToTransparent;
+            Typer.StopAllCoroutines();
+            Typer.WriteText("");
+        }
 
+        if(Fade.currentStatus == FadeToBlackScript.FadeStatus.FadingToTransparent) {
+            if (_LevelToLoad != null)
+            {
+                DontDestroyOnLoad(gameObject);
+                SceneManager.LoadScene(_LevelToLoad);
+            }
+        }
+    }
 }
-
-
