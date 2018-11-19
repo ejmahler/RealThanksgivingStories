@@ -21,6 +21,9 @@ public class PhoneSwipe : MonoBehaviour {
     [SerializeField]
     private Object _NextScene;
 
+    [SerializeField]
+    private AudioClip _SwipeSound;
+
     Queue<Image> QueuedSwipes = new Queue<Image>();
 
     enum SwipeResult { Left, Right };
@@ -52,6 +55,8 @@ public class PhoneSwipe : MonoBehaviour {
 	}
 
     IEnumerator ManageSwipes() {
+        AudioSource SwipeSource = GetComponent<AudioSource>();
+
         while(true) {
             Image NextSwipe = QueuedSwipes.Dequeue();
             Sprite CurrentSprite = NextSwipe.sprite;
@@ -63,7 +68,10 @@ public class PhoneSwipe : MonoBehaviour {
 
             yield return HandleSwipe(NextSwipe);
 
-            if(CurrentSprite == _PocaHottieSprite && LastSwipeResult == SwipeResult.Right) {
+            SwipeSource.clip = _SwipeSound;
+            SwipeSource.Play();
+
+            if (CurrentSprite == _PocaHottieSprite && LastSwipeResult == SwipeResult.Right) {
                 FadeToBlackScript FadeInstance = Instantiate<FadeToBlackScript>(_ScreenFadePrefab);
                 FadeInstance.currentStatus = FadeToBlackScript.FadeStatus.FadingToBlack;
                 DontDestroyOnLoad(FadeInstance.gameObject);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FadeToBlackScript : MonoBehaviour {
 
-    public enum FadeStatus { FadingToBlack, FadingToTransparent }
+    public enum FadeStatus { FadingToBlack, FadingToTransparent, Black }
     public FadeStatus currentStatus;
 
     private CanvasGroup canvasGroup;
@@ -22,13 +22,16 @@ public class FadeToBlackScript : MonoBehaviour {
     void Awake () {
 
         canvasGroup = GetComponent<CanvasGroup>();
-        if (currentStatus == FadeStatus.FadingToBlack)
-        {
-            canvasGroup.alpha = 0f;
-        }
-        else
-        {
-            canvasGroup.alpha = 1f;
+        switch(currentStatus) {
+            case FadeStatus.Black:
+                canvasGroup.alpha = 1f;
+                break;
+            case FadeStatus.FadingToBlack:
+                canvasGroup.alpha = 0f;
+                break;
+            case FadeStatus.FadingToTransparent:
+                canvasGroup.alpha = 1f;
+                break;
         }
     }
 	
@@ -36,6 +39,10 @@ public class FadeToBlackScript : MonoBehaviour {
 	void Update () {
         if(currentStatus == FadeStatus.FadingToBlack) {
             canvasGroup.alpha = Mathf.Clamp01(canvasGroup.alpha + Time.deltaTime / _FadeToBlackTime);
+
+            if(IsOpaque) {
+                currentStatus = FadeStatus.Black;
+            }
         }
         else if (currentStatus == FadeStatus.FadingToTransparent)
         {

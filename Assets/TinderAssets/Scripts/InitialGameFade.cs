@@ -27,32 +27,24 @@ public class InitialGameFade : MonoBehaviour {
         AudioSource DialogueSource = GetComponent<AudioSource>();
         TypeText TextType = GetComponent<TypeText>();
 
-        TextType.WriteText(_FirstHalfText);
+        TextType.WriteText(_FirstHalfText, _FirstHalfAudio);
 
-        yield return new WaitForSeconds(8.0f);
+        yield return new WaitForSeconds(_FirstHalfAudio.length + 1.0f);
 
-        yield return Tween(0.5f, (float Percent) =>
+        yield return Utils.Tween(0.5f, (float Percent) =>
         {
             TextBoxCanvasGroup.alpha = 1.0f - Percent;
         });
         TextBox.text = "";
         TextBoxCanvasGroup.alpha = 1.0f;
 
-        TextType.WriteText(_SecondHalfText);
+        TextType.WriteText(_SecondHalfText, _SecondHalfAudio);
 
-        yield return new WaitForSeconds(8.0f);
+        yield return new WaitForSeconds(_SecondHalfAudio.length + 1.0f);
         Fade.currentStatus = FadeToBlackScript.FadeStatus.FadingToTransparent;
     }
 
-    public static IEnumerator Tween(float duration, System.Action<float> TweenFn) {
-        float BeginTime = Time.time;
-        while(Time.time - BeginTime < duration) {
-            float percent = (Time.time - BeginTime) / duration;
-            TweenFn(percent);
-            yield return null;
-        }
-        TweenFn(1);
-    }
+
 }
 
 

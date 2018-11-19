@@ -717,6 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: {fileID: 981773959}
   textPause: 0.05
+  myAudioSource: {fileID: 1553723659}
 --- !u!114 &1553723661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,8 +734,8 @@ MonoBehaviour:
 
     the Pilgrims realize they have brought no women with them...'
   _SecondHalfText: The enterprising John Smith has the perfect idea...
-  _FirstHalfAudio: {fileID: 0}
-  _SecondHalfAudio: {fileID: 0}
+  _FirstHalfAudio: {fileID: 8300000, guid: 6f45b15a240c7451997c23717fd98edd, type: 3}
+  _SecondHalfAudio: {fileID: 8300000, guid: cb73bc6f401954fbbb3a86b21d0437e3, type: 3}
 --- !u!114 &1553723662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2edcdb6db2a34fa2bcf14e7c1f0a07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStatus: 0
+  currentStatus: 2
   _FadeToBlackTime: 1
   _FadeToTransparentTime: 1
 --- !u!225 &1553723663
@@ -883,6 +884,7 @@ GameObject:
   - component: {fileID: 1602604335}
   - component: {fileID: 1602604337}
   - component: {fileID: 1602604336}
+  - component: {fileID: 1602604338}
   m_Layer: 5
   m_Name: Phone
   m_TagString: Untagged
@@ -934,6 +936,7 @@ MonoBehaviour:
   _ScreenFadePrefab: {fileID: 114521680166468294, guid: eae48829ce9a34c30a74db70c4496102,
     type: 2}
   _NextScene: {fileID: 102900000, guid: d48db954b600d496ca2dc5e0111bf693, type: 3}
+  _SwipeSound: {fileID: 8300000, guid: 4f425f15a12da492ba16814045ad7c47, type: 3}
 --- !u!222 &1602604337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -941,6 +944,101 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1602604334}
   m_CullTransparentMesh: 0
+--- !u!82 &1602604338
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1602604334}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1858984481
 GameObject:
   m_ObjectHideFlags: 0
