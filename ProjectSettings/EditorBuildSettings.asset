@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/TitleCardScene.unity
+    guid: 08e72cd3e679743bda9759befcea4a94
+  - enabled: 1
     path: Assets/_Scenes/MainMenu.unity
     guid: 10ea249fc10f26b4ab89e1b5f29d1e9f
   - enabled: 1
@@ -22,6 +25,9 @@ EditorBuildSettings:
     guid: 4b47740fdadde1d4589f279edea7d243
   - enabled: 1
     path: Assets/_Scenes/WitchTrial/WitchTrial3.unity
+    guid: fb75d818219ec5f4eabd6a86a9223048
+  - enabled: 1
+    path: Assets/_Scenes/WitchTrial/WitchTrial4.unity
     guid: fddb2e4f5aa1f424d915d35aadd2b50e
   - enabled: 1
     path: Assets/PaulAndBen/Scenes/BenTransitionScene.unity

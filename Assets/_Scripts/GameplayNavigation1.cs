@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameplayNavigation : MonoBehaviour {
+public class GameplayNavigation1 : MonoBehaviour {
     
     [SerializeField]
     private Text _textCrawler;
@@ -39,7 +39,6 @@ public class GameplayNavigation : MonoBehaviour {
     private float _mouseClickBuffer = 0.2f;
 
     private bool waitForButton;
-    private bool secondButtonPressed;
 
     // Use this for initialization
 	void Start () {
@@ -74,12 +73,6 @@ public class GameplayNavigation : MonoBehaviour {
         AdvanceStory();
     }
 
-    public void ButtonAdvance2()
-    {
-        secondButtonPressed = true;
-        AdvanceStory();
-    }
-
     void AdvanceStory()
     {
 
@@ -93,7 +86,6 @@ public class GameplayNavigation : MonoBehaviour {
         }
         else if (_currentStoryPointIterator < _storyPoints.Length)
         {
-            secondButtonPressed = false;
             waitForButton = true;
             _choiceBox.SetActive(true);
             LoadChoicesInStory(_currentStoryPointIterator);
@@ -116,14 +108,7 @@ public class GameplayNavigation : MonoBehaviour {
 
         if (iterator >= _storyPoints.Length)
         {
-            if (secondButtonPressed)
-            {
-                SceneManager.LoadScene("WitchTrial2");
-            }
-            else
-            {
-                SceneManager.LoadScene("WitchTrial3");
-            }
+            SceneManager.LoadScene("WitchTrial4");
             return;
         }
 
