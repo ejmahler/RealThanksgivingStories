@@ -19,7 +19,7 @@ public class PhoneSwipe : MonoBehaviour {
     private FadeToBlackScript _ScreenFadePrefab;
 
     [SerializeField]
-    private Object _NextScene;
+    private string _NextScene;
 
     [SerializeField]
     private AudioClip[] _SwipeSounds;
@@ -102,7 +102,7 @@ public class PhoneSwipe : MonoBehaviour {
                 yield return new WaitForSeconds(1.0f);
 
                 FadeInstance.currentStatus = FadeToBlackScript.FadeStatus.FadingToTransparent;
-                SceneManager.LoadScene(_NextScene.name);
+                SceneManager.LoadScene(_NextScene);
             }
             FirstThing = false;
         }

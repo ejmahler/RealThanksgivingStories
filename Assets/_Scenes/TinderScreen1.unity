@@ -940,7 +940,7 @@ MonoBehaviour:
     type: 2}
   _ScreenFadePrefab: {fileID: 114521680166468294, guid: eae48829ce9a34c30a74db70c4496102,
     type: 2}
-  _NextScene: {fileID: 102900000, guid: d48db954b600d496ca2dc5e0111bf693, type: 3}
+  _NextScene: TinderScreen2
   _SwipeSounds:
   - {fileID: 8300000, guid: f7b8b3df91ffe412b99fc8ce72757c89, type: 3}
   - {fileID: 8300000, guid: aa3760354b9644ab886617fb4d650496, type: 3}
